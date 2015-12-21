@@ -24,22 +24,47 @@
 
 </head>
 <body>
+<style>
 
+.oj {
+    object-fit: cover;
+    object-position: center;
+    height: 200px !important;
+    width: 100%;
+}
+
+
+</style>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-
+var twel;
+function fms(twel) {
+	var x = 0;
+	var y = twel;
+	while (x < twel.length) {
+	 var str = "<article><div class=\"post-image\"><div class=\"post-heading\"><h3>" + y[x][0] + "</h3></div><img class=\"tea\" src=\"" +  y[x][2] + "\" alt=\"" + x[0] + "\"/></div><p>" + y[x][1] + " <div class=\"bottom-article\"><ul class=\"meta-post\"><li><i class=\"icon-calendar\"></i><a href=\"#\">" + y[x][3] + "</a></li><li><i class=\"icon-user\"></i><a href=\"#\">" + y[x][4] + "</a></li><li><i class=\"icon-folder-open\"></i><a href=\"#\"> Blog</a></li></ul><a href=\"#\" class=\"pull-right\">Continue reading <i class=\"icon-angle-right\"></i></a></div></article>";
+		document.getElementById("WOAH").insertAdjacentHTML('afterbegin', str);
+		x++;
+	}
+	x = twel.length - 1;
+	while (x > twel.length - 4) {
+		var bb = "<li><img src=\"" + y[x][2] + "\" class=\"pull-left oj\"/><h6><a href=\"#\">" + y[x][0] + "</a></h6><p>" + y[x][1].substring(0,100) + "...</p></li>"; 
+		document.getElementById("WOOSH").insertAdjacentHTML('beforeend', bb);
+		x--;
+	}
+}
 $.ajax({
     type: "GET",
     url: "http://localhost/callmemaybe.php",
     success: function(data) {
 		console.log(JSON.parse(data));
+		twel = JSON.parse(data);
+		fms(twel);
 	  },
 	error: function(e) {
 		console.log(e.message);
 	  }
 });
-
-
 </script>
 
 <div id="wrapper">
@@ -90,26 +115,8 @@ $.ajax({
 	<section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8">
-				<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3>Things to Come for Community Outreach</h3>
-							</div>
-							<img src="img/dummies/blog/Volunteer.png" alt="" />
-						</div>
-						<p>
-							  We have lots of events we are still planning, or going to do later in the year. This year our FTC team decided we wanted to reach out to our community by inspiring youth to pursue STEM in their educ...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> December 2nd, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Currie, Megan</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/CommToBeDec2.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			
+			<div class="col-lg-8" id="WOAH">
+							
 			</div>
 			<div class="col-lg-4">
 				<aside class="right-sidebar">
@@ -130,28 +137,8 @@ $.ajax({
 				</div>
 				<div class="widget">
 					<h5 class="widgetheading">Latest posts</h5>
-					<ul class="recent">
-						<li>
-						<img src="img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-						<h6><a href="BlogPosts/November23">Turkey Train</a></h6>
-						<p>
-							 This year, for our annual MICDS Turkey Train event ...
-						</p>
-						</li>
-						<li>
-						<a href="#"><img src="img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
-						<h6><a href="BlogPosts/November18">3D Printing</a></h6>
-						<p>
-							 Our 3D printing team has had ample opportunity,    ...
-						</p>
-						</li>
-						<li>
-						<a href="#"><img src="img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
-						<h6><a href="BlogPosts/November16">MICDS Robotics</a></h6>
-						<p>
-							 Greetings to all those reading this for the first  ...
-						</p>
-						</li>
+					<ul class="recent" id="WOOSH">
+						
 					</ul>
 				</div>
 				<div class="widget">
@@ -226,7 +213,7 @@ $.ajax({
 				<div class="col-lg-6">
 					<div class="copyright">
 						<p>
-							<span>&copy; Moderna 2014 All right reserved. By </span><a href="http://bootstraptaste.com" target="_blank">Bootstrap Themes</a>
+							<span>&copy; MICDS ROBOTICS. 2015. ALL RIGHTS RESERVED</span>
 						</p>
                         <!-- 
                             All links in the footer should remain intact. 
