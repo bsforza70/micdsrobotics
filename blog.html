@@ -24,6 +24,24 @@
 
 </head>
 <body>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+
+$.ajax({
+    type: "GET",
+    url: "http://localhost/callmemaybe.php",
+    success: function(data) {
+		console.log(JSON.parse(data));
+	  },
+	error: function(e) {
+		console.log(e.message);
+	  }
+});
+
+
+</script>
+
 <div id="wrapper">
 <!-- start header -->
 	<header>
@@ -73,7 +91,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
-			<article>
+				<article>
 						<div class="post-image">
 							<div class="post-heading">
 								<h3>Things to Come for Community Outreach</h3>
@@ -91,269 +109,7 @@
 							<a href="BlogPosts/CommToBeDec2.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
 						</div>
 				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3>FLL Initiatives</h3>
-							</div>
-							<img src="img/dummies/blog/FLLNov.png" alt="" />
-						</div>
-						<p>
-							 Our team has been extremely dedicated to helping the FLL program. We mentored a local FLL team, Odyssey 2.0 from Word of Life Lutheran School. They were a new team and didn’t know what to expect    ...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> December 2nd, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Currie, Megan</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/CommOutreachEd2.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3>Mentoring Rampunzel</h3>
-							</div>
-							<img src="img/dummies/blog/MentorRamp.png" alt="" />
-						</div>
-						<p>
-							 This year, we have been mentoring an FTC team at our school, #9905 Rampunzel. Rampunzel is an all-girls robotics team whose mission is “To inspire young women to stand up for what they believe in   ...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> December 2nd, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Currie, Megan</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/CommOutreachEd1.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="#">The Robotics Community</a></h3>
-							</div>
-							<img src="img/dummies/blog/Kristin.jpg" alt="" />
-						</div>
-						<p>
-							 Our team has become very close friends that readily accepts new members into its close atmosphere. I was new this year and was pleasantly surprised how easy it was to fit in with them. I was instant...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> November 30th, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Feeback, Kristin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/November30Kristin.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3>Teamwork</h3>
-							</div>
-							<img src="img/dummies/blog/NiemaCommunity.jpg" alt="" />
-						</div>
-						<p>
-							 In this 2015-2016, I've really enjoyed working with different people who have different strengths and weaknesses. Initially, it was difficult being productive because we were trying to organize team...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> November 30th, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Foroughi, Niema</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/November30Niema.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="#">Turkey Train</a></h3>
-							</div>
-							<img src="img/dummies/blog/TurkeyTrain.jpg" alt="" />
-						</div>
-						<p>
-							 This year, for our annual MICDS Turkey Train event, our robot managed to carry a turkey for a school record breaking run of about 300 meters! Although our goal each year has been to make it all the ...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> November 23rd, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Biggs, Charles</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/November23.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="#">The 3D Printing Team</a></h3>
-							</div>
-							<img src="img/dummies/blog/3DTeam.jpg" alt="" />
-						</div>
-						<p>
-							 Our 3D printing team has had ample opportunity, thanks to funding by our school, to invest in the latest printers for our lab! Currently, we have four 3D printers and a cleaner for support materials...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> November 18th, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Biggs, Charles</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/November18.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="#">MICDS Robotics Team 2015-2016</a></h3>
-							</div>
-							<img src="img/dummies/blog/RobotX.jpg" alt="" />
-							<img src="img/dummies/blog/RobotAlpha.jpg" alt = "" />
-						</div>
-						<p>
-							 Greetings to all those reading this for the first time! Our MICDS Robotics team has split into two parts this year, one co-ed team and another all female team to (hopefully) bolster the amount of girls participating in STEM activities...
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> November 16th, 2015</a></li>
-								<li><i class="icon-user"></i><a href="#"> Biggs, Charles</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-							</ul>
-							<a href="BlogPosts/November16.html" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-			<!--	<article>
-						<div class="post-slider">
-							<div class="post-heading">
-								<h3><a href="#">This is an example of slider post format</a></h3>
-							</div>
-	 start flexslider
-							<div id="post-slider" class="flexslider">
-								<ul class="slides">
-									<li>
-									<img src="img/dummies/blog/img1.jpg" alt="" />
-									</li>
-									<li>
-									<img src="img/dummies/blog/img2.jpg" alt="" />
-									</li>
-									<li>
-									<img src="img/dummies/blog/img3.jpg" alt="" />
-									</li>
-								</ul>
-							</div>
-	end flexslider
-						</div>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-						</p>
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-				<article>
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="#">This is an example of standard post format</a></h3>
-							</div>
-							<img src="img/dummies/blog/img1.jpg" alt="" />
-						</div>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-						</p>
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-				<article>
-						<div class="post-slider">
-							<div class="post-heading">
-								<h3><a href="#">This is an example of slider post format</a></h3>
-							</div>
-	start flexslider
-							<div id="post-slider" class="flexslider">
-								<ul class="slides">
-									<li>
-									<img src="img/dummies/blog/img1.jpg" alt="" />
-									</li>
-									<li>
-									<img src="img/dummies/blog/img2.jpg" alt="" />
-									</li>
-									<li>
-									<img src="img/dummies/blog/img3.jpg" alt="" />
-									</li>
-								</ul>
-							</div>
-	end flexslider
-						</div>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-						</p>
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-				<article>
-						<div class="post-quote">
-							<div class="post-heading">
-								<h3><a href="#">Nice example of quote post format below</a></h3>
-							</div>
-							<blockquote>
-								<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, ei quod constituto qui. Summo labores expetendis ad quo, lorem luptatum et vis. No qui vidisse signiferumque...
-							</blockquote>
-						</div>
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-				<article>
-						<div class="post-video">
-							<div class="post-heading">
-								<h3><a href="#">Amazing video post format here</a></h3>
-							</div>
-							<div class="video-container">
-								<iframe src="http://player.vimeo.com/video/30585464?title=0&amp;byline=0">
-								</iframe>
-							</div>
-						</div>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei.
-						</p>
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</article>
-				<div id="pagination">
-					<span class="all">Page 1 of 3</span>
-					<span class="current">1</span>
-					<a href="#" class="inactive">2</a>
-					<a href="#" class="inactive">3</a>
-				</div>-->
+			
 			</div>
 			<div class="col-lg-4">
 				<aside class="right-sidebar">
