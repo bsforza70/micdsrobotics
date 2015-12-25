@@ -54,6 +54,16 @@
         <h1 id="inner-headline">Goals</h1>
         
         <?php 
+        try {
+            $events = new PDO("mysql:host=45.56.70.141:3306;dbname=micdsrobotics", "jackcai_client","991206");
+        } catch (Exception $error) {
+            echo "could not connect to the database, details below: "."</br>".$error;
+            exit;
+        }
+        
+        var_dump($db);
+        
+        
         $events = array (
             array('Notebook'),
             array('Construction'),
@@ -62,17 +72,22 @@
             array('3D Printing'),
         );
         
-        echo '<table>';
-        for (i=0, i<=5, i++) {
-            echo '<tr>';
+        echo '<div class="content">';
+        for ($i=0; $i<=100; $i++) {
+            echo '<div class="row">';
             foreach ($events as $event){
-                echo '<td>'.$events[$i].'</td>'
+                if (!empty($event[$i])) {
+                    echo '<div class="col-lg-2">'.$event[$i].'</div>';
+                }else{
+                    echo '</div>';
+                    break 2;
+                }
             }
-            echo '</tr>'
+            echo '<div>';
         }
-        echo '</table>';
+        echo '</div>';
         
-        
+        ?>
         <form method="post" action="goals-processing.php">
             <label for="planner_input">what are you going to add?</label>
             <input type="text" id="planner_input" name="input">
