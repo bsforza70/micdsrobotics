@@ -56,10 +56,8 @@
         
         <?php 
 
-        var_dump($_POST);
-
         try {
-            $events_db = new PDO("mysql:host=localhost;dbname=micdsrobotics", "root");
+            $events_db = new PDO("mysql:host=45.56.70.141;dbname=robotics_goals", "jackcai_client", "991206");
             $events_db -> setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $events_db -> exec("SET NAMES 'utf8'");
         } catch (Exception $error) {
@@ -94,7 +92,7 @@
 
                 $latest_id = $_POST["row_id"];
                 $new_id = $latest_id + 1; 
-                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '" . $_POST["input"] . "' WHERE id = " . $latest_id . ";";//Updating the values
+                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '" . $_POST["input"] . "(" . $_POST["time"] . ")" . "' WHERE id = " . $latest_id . ";";//Updating the values
 
                 try {
                     $events_db -> exec($sql2); 
@@ -163,7 +161,7 @@
             echo '<div class="row">';
             echo '<div class=col-lg-1></div>';
             foreach ($events_array as $event_type => $event) {
-                echo '<div class=col-lg-2><p>'.$event.'</p>';
+                echo '<div class=col-lg-2><p class="goals_content">'.$event.'</p>';
                 if (!is_null($event) and ($row_id != 0)) {
                     echo '<form method="post", action="goals.php">
                             <input type="hidden" value="delete" name="delete">
