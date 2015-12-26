@@ -93,7 +93,7 @@
 
                 $latest_id = $_POST["row_id"];
                 $new_id = $latest_id + 1; 
-                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '" . $_POST["input"] . "(" . $_POST["time"] . ")" . "' WHERE id = " . $latest_id . ";";//Updating the values
+                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '<ul><li>" . $_POST["input"] . "</li><li>(" . $_POST["time"] . ")</li></ul>" . "' WHERE id = " . $latest_id . ";";//Updating the values
 
                 try {
                     $events_db -> exec($sql2); 
@@ -160,9 +160,9 @@
         foreach ($content as $row_id => $events_array) {
             var_dump($row_id);
             echo '<div class="row">';
-            echo '<div class=col-lg-1></div>';
+            echo '<div class="col-lg-1"></div>';
             foreach ($events_array as $event_type => $event) {
-                echo '<div class=col-lg-2><p class="goals_content">'.$event.'</p>';
+                echo '<div class="col-lg-2 goals_content">'.$event.'';
                 if (!is_null($event) and ($row_id != 0)) {
                     echo '<form method="post", action="goals.php">
                             <input type="hidden" value="delete" name="delete">
