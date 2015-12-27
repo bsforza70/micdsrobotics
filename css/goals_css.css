@@ -11,10 +11,24 @@
     line-height: 5;
 }
 
+.type_Notebook p{
+    color:#FF9900;
+}
 
-.goals_content li{
-    list-style: none;
-    font-size: 1em;
+.type_Construction p{
+    color:#03A500;
+}
+
+.type_Programming p{
+    color:#0072FF;
+}
+
+.type_Outreach p{
+    color:#C000FF;
+}
+
+.type_3D_Printing p{
+    color:#FF0000;
 }
 
 /* for the column titles. */
@@ -34,7 +48,7 @@
     outline: none;
 }
 
-/*for buttons at the end of row */
+/*for buttons at the end of row and inside the columns*/
 .rows_button {
     padding:auto;
     margin:auto;
@@ -45,6 +59,7 @@
     height: 60%;
     width: 60%;
 }
+
 .submit_button {
     -moz-box-shadow:inset 0px 39px 0px -24px #54a3f7;
     -webkit-box-shadow:inset 0px 39px 0px -24px #54a3f7;
@@ -65,11 +80,8 @@
     wdith: 35px;
 }
 
-.submit_button {
-    display: hidden;
-}
-
 .submit_button:hover {
+    visibility: visible;
     background-color:#0061a7;
 }
 .submit_button:active {
@@ -97,12 +109,10 @@
     width:35px;
 }
 
-.delete_button1 {
-    display:hidden;
-}
-
+/*configures the bar that confirms row deletion*/
 .delete_button1:hover {
     background-color:#eb675e;
+    visibility: visible;
 }
 .delete_button1:active {
     position:relative;
@@ -110,5 +120,12 @@
 }
 
 .deletion_confirm {
-    display: inline-block;
+display:block;
+height:4em;
+background-color:#ddd;
+border-style: solid;
+border-width: 0px;
+border-bottom-width: 3px;
+color:black;
+font-weight:700;
 }

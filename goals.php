@@ -103,13 +103,11 @@
                 }
             }
         }//Detects imput for goals events and update the database. 
-                    var_dump($_GET);
-            var_dump($_POST);
+
         if (isset($_POST["row_request"]) and isset($_POST["row_id"])) {
             $latest_id = $_POST["row_id"];
             if (isset($_POST["row_id"])) {
                 $deletion_id = $_POST["row_id"];
-                var_dump($deletion_id);
             } else {
                 $deletion_id = $latest_id;
             }
@@ -124,7 +122,6 @@
                     $deletion_confirm=True;
                 }
             }
-            var_dump($deletion_confirm);
             if ($_POST["row_request"]=='+') {
                 try { 
                     $events_db -> exec($sql5.$sql1); 
@@ -140,17 +137,17 @@
                     exit;
                 }
             } elseif ($_POST["row_request"]=='-' and !$deletion_confirm) {
-                echo '<pre>Are you sure you want to delete the whole row?
-                    <form method="POST" action="goals.php" class="deletion_confirm">
-                        <input type="hidden" value="-" name="row_request">
-                        <input type="hidden" value="Yes" name="deletion_confirm">
-                        <input type="hidden" value="'.$latest_id.'" name="row_id">
+                echo '<section class="deletion_confirm">Are you sure you want to delete the whole row?
+                    <form method="POST" action="goals.php" style="display:inline-block">
+                        <input type="hidden" value="-" name="row_request" style="height:1px; width:1px">
+                        <input type="hidden" value="Yes" name="deletion_confirm" style="height:1px; width:1px">
+                        <input type="hidden" value="'.$latest_id.'" name="row_id" style="height:1px; width:1px">
                         <input type="submit" value="Yes">
                     </form>
-                    <form mothod="POST" action="goals.php" class="deletion_confirm"> 
+                    <form mothod="POST" action="goals.php" style="display:inline-block"> 
                         <input type="submit" value="No">
                     </form>
-                <pre>';
+                </section>';
             }//Add rows to below or delete rows
         }
 
@@ -186,7 +183,7 @@
             echo '<tr>';
             foreach ($events_array as $event_type => $event) {
                 if ($row_id!=0){
-                    echo '<td class="goals_content">'.$event;
+                    echo '<td class="goals_content type_'.$event_type.'">'.$event;
                     if (!is_null($event) and ($row_id != 0)) {
                         echo '<form method="post", action="goals.php">
                                 <input type="hidden" value="delete" name="delete">
