@@ -93,7 +93,7 @@
 
                 $latest_id = $_POST["row_id"];
                 $new_id = $latest_id + 1; 
-                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '<ul><li>" . $_POST["input"] . "</li><li>(" . $_POST["time"] . ")</li></ul>" . "' WHERE id = " . $latest_id . ";";//Updating the values
+                $sql2 = "UPDATE events SET " . $_POST["event_type"] . "= '<p>" . $_POST["input"] . "</p><p>(" . $_POST["time"] . ")</p>" . "' WHERE id = " . $latest_id . ";";//Updating the values
 
                 try {
                     $events_db -> exec($sql2); 
@@ -103,16 +103,28 @@
                 }
             }
         }//Detects imput for goals events and update the database. 
-
-        if (isset($_POST["row_request"])) {
-
+                    var_dump($_GET);
+            var_dump($_POST);
+        if (isset($_POST["row_request"]) and isset($_POST["row_id"])) {
             $latest_id = $_POST["row_id"];
+            if (isset($_POST["row_id"])) {
+                $deletion_id = $_POST["row_id"];
+                var_dump($deletion_id);
+            } else {
+                $deletion_id = $latest_id;
+            }
             $new_id = $latest_id + 1; 
             $sql1 = "INSERT INTO events (id) VALUES ('" . $new_id . "');";//Execute to add one row with only an id colum to the database if the add row button is pressed. 
-            $sql3 = "DELETE FROM events WHERE id =" . $latest_id .  ";";
+            $sql3 = "DELETE FROM events WHERE id =" . $deletion_id .  ";";//delete row. 
             $sql5 = "UPDATE events SET id=id+1 WHERE id >= " . $new_id . ";";
             $sql6 = "UPDATE events SET id=id-1 WHERE id >= " . $new_id . ";";
-
+            $deletion_confirm = False;
+            if (isset($_POST["deletion_confirm"])) {
+                if ($_POST["deletion_confirm"]=="Yes") {
+                    $deletion_confirm=True;
+                }
+            }
+            var_dump($deletion_confirm);
             if ($_POST["row_request"]=='+') {
                 try { 
                     $events_db -> exec($sql5.$sql1); 
@@ -120,18 +132,30 @@
                     echo "could not create row, details below:"."</br>".$error;
                     exit;
                 } 
-            } elseif ($_POST["row_request"]=='-') {
+            } elseif (isset($deletion_id) and $deletion_confirm and $_POST["row_request"]=='-') {
                 try {
-                    $events_db -> exec($sql6.$sql3); 
+                    $events_db -> exec($sql3.$sql6); 
                 } catch (Exception $error){ 
                     echo "could not delete row, details below:"."</br>".$error;
                     exit;
                 }
+            } elseif ($_POST["row_request"]=='-' and !$deletion_confirm) {
+                echo '<pre>Are you sure you want to delete the whole row?
+                    <form method="POST" action="goals.php" class="deletion_confirm">
+                        <input type="hidden" value="-" name="row_request">
+                        <input type="hidden" value="Yes" name="deletion_confirm">
+                        <input type="hidden" value="'.$latest_id.'" name="row_id">
+                        <input type="submit" value="Yes">
+                    </form>
+                    <form mothod="POST" action="goals.php" class="deletion_confirm"> 
+                        <input type="submit" value="No">
+                    </form>
+                <pre>';
             }//Add rows to below or delete rows
         }
 
         if (isset($_POST["delete"])) {
-            if ($_POST["delete"] == delete){
+            if ($_POST["delete"] == 'delete'){
                 $latest_id = $_POST["row_id"];
                 $sql4 = "UPDATE events SET " . $_POST["event_type"] . "=null WHERE id = " . $latest_id . ";";//removing data
                 try {
@@ -156,52 +180,54 @@
         //Now the content variable is a two dimentional array that stores all the events. 
         $event_db=null;
         //displaying the content
-        echo '<div class="content">';
+        echo '<div class="table-reponsive">';
+        echo '<table class="table table-striped">';
         foreach ($content as $row_id => $events_array) {
-            var_dump($row_id);
-            echo '<div class="row">';
-            echo '<div class="col-lg-1"></div>';
+            echo '<tr>';
             foreach ($events_array as $event_type => $event) {
-                echo '<div class="col-lg-2 goals_content">'.$event.'';
-                if (!is_null($event) and ($row_id != 0)) {
-                    echo '<form method="post", action="goals.php">
-                            <input type="hidden" value="delete" name="delete">
-                            <input type="hidden" value="' . $row_id . '" name="row_id">
-                            <input type="hidden" value="' . $event_type . '" name="event_type">
-                            <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
-                            <input type="submit" value="delete">
-                         </form>';//delete button
+                if ($row_id!=0){
+                    echo '<td class="goals_content">'.$event;
+                    if (!is_null($event) and ($row_id != 0)) {
+                        echo '<form method="post", action="goals.php">
+                                <input type="hidden" value="delete" name="delete">
+                                <input type="hidden" value="' . $row_id . '" name="row_id">
+                                <input type="hidden" value="' . $event_type . '" name="event_type">
+                                <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
+                                <input type="image" value="submit" src="/img/delete_button1.png" border="0" alt="delete" class="delete_button1">
+                             </form>';//delete button
+                    }
+                    if (is_null($event) and ($row_id != 0)) {
+                        echo '<form method="post", action="goals.php">
+                                <textarea name="input" autocomplete="on" class="textarea" placeholder="+" cols=20 rows=10 minlength=5></textarea>
+                                <input type="hidden" value="' . $row_id . '" name="row_id">
+                                <input type="hidden" value="' . $event_type . '" name="event_type">
+                                <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
+                                <input type="image" value="submit" src="/img/submit_button.png" border="0" alt="Submit" class="submit_button">
+                             </form>';//textarea and add button
+                    }
+                    echo '</td>';
+                }else{
+                    echo '<th class="event_type">'.$event.'</th>';
                 }
-                if (is_null($event) and ($row_id != 0)) {
-                    echo '<form method="post", action="goals.php">
-                            <label for="planner_input">Add:</label>
-                            <input type="textarea" id="planner_input" name="input" autocomplete="on">
-                            <input type="hidden" value="' . $row_id . '" name="row_id">
-                            <input type="hidden" value="' . $event_type . '" name="event_type">
-                            <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
-                            <input type="submit" value="submit">
-                         </form>';//add button
-                }
-                echo '</div>';
             }
-            echo '</div>';
-            echo '<form method="post", action="goals.php">
+            echo '<td class="rows_button"><form method="post", action="goals.php">
                     <input type="hidden" value="+" name="row_request">
                     <input type="hidden" value="' . $row_id . '" name="row_id">
-                    <input type="submit" value="+">
+                    <input type="image" value="+" src="/img/add_button.png" border="0" alt="Delete row" class="add_button">
                 </form>';
             if ($row_id != 0) {
                 echo '<form method="post", action="goals.php">
                     <input type="hidden" value="-" name="row_request">
                     <input type="hidden" value="' . $row_id . '" name="row_id">
-                    <input type="submit" value="-">
+                    <input type="image" value="-" src="/img/delete_button.png" border="0" alt="Add row" class="delete_button">
                 </form>';
-            }
-        }
+            }echo '</td></tr>';
+        } echo '</table>';
+        echo '</div>';
         ?>
         
     </section>
-    	<footer>
+<footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
