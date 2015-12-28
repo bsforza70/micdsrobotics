@@ -55,7 +55,7 @@ function fms(twel) {
 }
 $.ajax({
     type: "GET",
-    url: "http://localhost/callmemaybe.php",
+    url: "http://micdsrobotics.herokuapp.com/callmemaybe.php",
     success: function(data) {
 		console.log(JSON.parse(data));
 		twel = JSON.parse(data);
