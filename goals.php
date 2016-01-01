@@ -183,7 +183,7 @@
             echo '<tr>';
             foreach ($events_array as $event_type => $event) {
                 if ($row_id!=0){
-                    echo '<td class="goals_content type_'.$event_type.'">'.$event;
+                    echo '<td class="goals_content type_'.$event_type.' row_'.$row_id.'">'.$event;
                     if (!is_null($event) and ($row_id != 0)) {
                         echo '<form method="post", action="goals.php">
                                 <input type="hidden" value="delete" name="delete">
@@ -301,4 +301,7 @@
 			</div>
 		</div>
 	</div>
+    <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/goals/goals.js" type="text/javascript" charset="utf-8"></script>
 	</footer>
