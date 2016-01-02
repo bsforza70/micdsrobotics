@@ -7,14 +7,14 @@
 <meta name="description" content="Bob Sforza & Charlie Biggs" />
 <meta name="author" content="MICDS Robotics" />
 <!-- css -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="css/jcarousel.css" rel="stylesheet" />
-<link href="css/flexslider.css" rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
-<link href="css/goals_css.css" rel="stylesheet" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="../css/jcarousel.css" rel="stylesheet" />
+<link href="../css/flexslider.css" rel="stylesheet" />
+<link href="../css/style.css" rel="stylesheet" />
+<link href="../css/goals_css.css" rel="stylesheet" />
 
-<link href="skins/default.css" rel="stylesheet" />
+<link href="../skins/default.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -29,11 +29,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><span>MICDS</span> Robotics</a>
+                    <a class="navbar-brand" href="../index.html"><span>MICDS</span> Robotics</a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
                             <ul class="dropdown-menu">
@@ -43,7 +43,7 @@
                             </ul>
                         </li>-->
                         <!--<li><a href="portfolio.html">Portfolio</a></li>-->
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
                         <li class="active"><a href="goals.php">Goals</a></li>
                         <!--<li><a href="contact.html">Contact</a></li>-->
                     </ul>
@@ -56,7 +56,9 @@
         <h1 id="inner-headline">Goals</h1>
         
         <?php 
-
+        
+        define ('URL', 'https://www.micdsrobotics.com/goals/');
+        
         try {
             $events_db = new PDO("mysql:host=45.56.70.141;dbname=robotics_goals", "jackcai_client", "991206");
             $events_db -> setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -138,13 +140,13 @@
                 }
             } elseif ($_POST["row_request"]=='-' and !$deletion_confirm) {
                 echo '<section class="deletion_confirm">Are you sure you want to delete the whole row?
-                    <form method="POST" action="goals.php" style="display:inline-block">
+                    <form method="POST" action="." style="display:inline-block">
                         <input type="hidden" value="-" name="row_request" style="height:1px; width:1px">
                         <input type="hidden" value="Yes" name="deletion_confirm" style="height:1px; width:1px">
                         <input type="hidden" value="'.$latest_id.'" name="row_id" style="height:1px; width:1px">
                         <input type="submit" value="Yes">
                     </form>
-                    <form mothod="POST" action="goals.php" style="display:inline-block"> 
+                    <form mothod="POST" action="." style="display:inline-block"> 
                         <input type="submit" value="No">
                     </form>
                 </section>';
@@ -185,21 +187,21 @@
                 if ($row_id!=0){
                     echo '<td class="goals_content type_'.$event_type.' row_'.$row_id.'">'.$event;
                     if (!is_null($event) and ($row_id != 0)) {
-                        echo '<form method="post", action="goals.php">
+                        echo '<form method="post", action=".">
                                 <input type="hidden" value="delete" name="delete">
                                 <input type="hidden" value="' . $row_id . '" name="row_id">
                                 <input type="hidden" value="' . $event_type . '" name="event_type">
                                 <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
-                                <input type="image" value="submit" src="/img/delete_button1.png" border="0" alt="delete" class="delete_button1">
+                                <input type="image" value="submit" src="../img/delete_button1.png" border="0" alt="delete" class="delete_button1">
                              </form>';//delete button
                     }
                     if (is_null($event) and ($row_id != 0)) {
-                        echo '<form method="post", action="goals.php">
+                        echo '<form method="post", action=".">
                                 <textarea name="input" autocomplete="on" class="textarea" placeholder="+" cols=20 rows=10 minlength=5></textarea>
                                 <input type="hidden" value="' . $row_id . '" name="row_id">
                                 <input type="hidden" value="' . $event_type . '" name="event_type">
                                 <input type="hidden" value="' . date(DATE_RSS) . '" name="time">
-                                <input type="image" value="submit" src="/img/submit_button.png" border="0" alt="Submit" class="submit_button">
+                                <input type="image" value="submit" src="../img/submit_button.png" border="0" alt="Submit" class="submit_button">
                              </form>';//textarea and add button
                     }
                     echo '</td>';
@@ -207,16 +209,16 @@
                     echo '<th class="event_type">'.$event.'</th>';
                 }
             }
-            echo '<td class="rows_button"><form method="post", action="goals.php">
+            echo '<td class="rows_button"><form method="post", action=".">
                     <input type="hidden" value="+" name="row_request">
                     <input type="hidden" value="' . $row_id . '" name="row_id">
-                    <input type="image" value="+" src="/img/add_button.png" border="0" alt="Delete row" class="add_button">
+                    <input type="image" value="+" src="../img/add_button.png" border="0" alt="Delete row" class="add_button">
                 </form>';
             if ($row_id != 0) {
-                echo '<form method="post", action="goals.php">
+                echo '<form method="post", action=".">
                     <input type="hidden" value="-" name="row_request">
                     <input type="hidden" value="' . $row_id . '" name="row_id">
-                    <input type="image" value="-" src="/img/delete_button.png" border="0" alt="Add row" class="delete_button">
+                    <input type="image" value="-" src="../img/delete_button.png" border="0" alt="Add row" class="delete_button">
                 </form>';
             }echo '</td></tr>';
         } echo '</table>';
@@ -301,7 +303,7 @@
 			</div>
 		</div>
 	</div>
-    <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/goals/goals.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/goals/goals.js" type="text/javascript" charset="utf-8"></script>
 	</footer>
